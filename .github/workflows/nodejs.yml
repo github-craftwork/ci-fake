@@ -3,12 +3,27 @@ name: Node CI
 on: [push]
 
 jobs:
-  format:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: npm ci
+      run: npm ci
     - name: lint and push
-      uses: MarvinJWendt/run-node-formatter@1.2.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}:
-     
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        npm run format
+        # exit if there are no changes to commit
+        [[ `git status --porcelain` ]] || exit
+        git checkout "${GITHUB_HEAD_REF}"
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@users.noreply.github.com"
+        git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+        git add .
+        git commit -am "lint!"
+        git push -u origin ${GITHUB_HEAD_REF}
   build:
 
     runs-on: ubuntu-latest
