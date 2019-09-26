@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "npx parcel build index.js",
-    "lint": "standard --fix"
+    "lint": "standard --fix",
+    "format": "standard --fix"
   },
   "repository": {
     "type": "git",
