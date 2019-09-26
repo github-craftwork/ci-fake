@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "npx parcel build index.js",
-    "lint": "npx eslint --fix"
+    "lint": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/bdougie/theWeekNum#readme",
   "devDependencies": {
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "standard": "14.3.0"
   }
 }
