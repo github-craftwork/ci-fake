@@ -12,7 +12,7 @@ jobs:
       run: npm ci
     - name: lint and push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.CRAFTWORK_TOKEN }}
       run: |
         npm audit --fix
         # exit if there are no changes to commit
